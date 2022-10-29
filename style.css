@@ -1,11 +1,16 @@
 * {
     box-sizing: border-box;
   }
+  
+  body {
+    
+  }
 
   .main-container {
     width: 375px;
     height: 962px;
     background-color: #f3f3f3;
+    font-family: 'Roboto';
   }
 
   .header {
@@ -17,6 +22,8 @@
     background: #FFFFFF;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
     position: fixed;
+    margin-bottom: 580px;
+    z-index: 1;
   }
 
   img {
@@ -30,7 +37,51 @@
     width: 45px;
     height: 45px;
     margin-left: 200px;
-    margin-top: ;
+    
+    
+  }
+
+  ul {
+    margin-top: 106px;
+    
+    
+  }
+
+  li {
+    width: 375px;
+    height: 40px;
+    color: black;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    gap: 4px 4px ;
+    margin-bottom: 4px;
+    
+  }
+
+  .name {
+    font-weight: bold;
+  }
+
+  .time {
+    color: #aaaaaa;
+    margin-left: 8px;
+  }
+
+  .joinedLeaveRoom {
+    background-color: #DCDCDC;
+  }
+
+  .normalMessage {
+    background-color: #FFFFFF;
+  }
+
+  .privateMessage {
+    background-color:#fddedf;
   }
 
   .bottom-tab {
@@ -38,19 +89,44 @@
     height: 80px;
     left: 0px;
     bottom: 0px;
-
+    display: flex;
     background: #FFFFFF;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
     position: fixed;
+    z-index: 1;
   }
 
+  .text::placeholder {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    width: 145px;
+    height: 30px;
+    margin: 25px 10px 10px 15px;
+    position: inherit;
+
+  }
+
+  .bottom-tab input {
+    width: 375px;
+    height: 80px;
+    border: 1px solid #BBB;
+    border-radius: 4px;
+    position: absolute;
+  }
   .bottom-tab ion-icon {
     width: 26px;
     height: 26px;
     left: 88.27%;
     right: 4.8%;
-    margin-top: 17px ;
-    margin-left: 330px ;
+    
+    margin-left: 330px;
+    margin-top: 27px;
+    cursor: pointer;
 
 
+    
+    
   }
