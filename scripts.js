@@ -1,4 +1,3 @@
-let conversas = [];
 let nameUser = '';
 
 getMessages();
@@ -6,6 +5,8 @@ getMessages();
 askNameUser();
 
 setInterval(keepConection,5000);
+
+setInterval(getMessages,3000);
 
 function getMessages() {
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
@@ -16,8 +17,8 @@ function getMessages() {
 
 function askNameUser(){
 
-   // nameUser = prompt('Qual o seu nome?');
-   nameUser = 'daksdmqinqsncajscasjx[q';
+   nameUser = prompt('Qual o seu nome?');
+   //nameUser = 'daksdmqi';
 
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants',{name:nameUser});
 
@@ -39,47 +40,62 @@ function keepConection() {
 
 function addMessage(){
 
-    const typedText = document.querySelector('input').value;
+    let typedText = document.querySelector('input').value;
 
-    const newMessages = `{
-        from: ${nameUser},
-        to: "nome do destinatário (Todos se não for um específico)",
-        text: ${typedText},
+    const newMessages = {
+        from: nameUser,
+        to: "Todos",
+        text: typedText,
         type: "message" 
-    };`;
-
-    //conversas.push(newMessages);
+    };
 
     const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages',newMessages);
-    // promessa.then();
-    //promessa.catch((erro) => alert("Mensagem de erro: " + erro.data));
-    //renderizarConversas(newMessages);
+    promessa.then();
+    promessa.catch(() => window.location.reload());
+    document.querySelector('input').value = '';
 }
 
 function renderizarConversas(message){
 
     const chatList = document.querySelector('.chat');
     const filteredMessage = filterMessages(message);
-    console.log(filteredMessage);
+    
 
     chatList.innerHTLM = '';
+
+    const lastTime =  chatList.lastElementChild.querySelector('.time').innerHTML.slice(1,9);
+
+    const newTimeLastMessage = filteredMessage[filteredMessage.length-1].time;
+
+    const isThereNewMessage = lastTime !==  newTimeLastMessage;
+    console.log(lastTime);
+    console.log(newTimeLastMessage);
+    console.log(isThereNewMessage);
 
     for(let i =0; i < filteredMessage.length; i++){
 
         const objMessage = filteredMessage[i];
 
         if(filteredMessage[i].type === 'status') {
-            chatList.innerHTML += `<li class = 'joinedLeaveRoom'><span class = 'time'>${objMessage.time}</span> <spam class = 'name'>${objMessage.from}</spam> ${objMessage.text}</li>`;
+            chatList.innerHTML += `<li class = 'joinedLeaveRoom'><span class = 'time'>(${objMessage.time})</span> <spam class = 'name'>${objMessage.from}</spam> ${objMessage.text}</li>`;
+            
         } else if (filteredMessage[i].type === 'message') {
-            chatList.innerHTML += `<li><span class = 'time'>${objMessage.time}</span> <spam class = 'name'>${objMessage.from}</spam> para <spam class = 'name'>Todos</spam>: ${objMessage.text}</li>`;
+            chatList.innerHTML += `<li><span class = 'time'>(${objMessage.time})</span> <spam class = 'name'>${objMessage.from}</spam> para <spam class = 'name'>Todos</spam>: ${objMessage.text}</li>`;
+            
         } else {
-            chatList.innerHTML += `<li class = 'privateMessage'><span class = 'time'>${objMessage.time}</span> <spam class = 'name'>${objMessage.from}</spam> reservadamente para <spam class = 'name'>${nameUser}</spam>: ${objMessage.text}</li>`;
+            chatList.innerHTML += `<li class = 'privateMessage'><span class = 'time'>(${objMessage.time})</span> <spam class = 'name'>${objMessage.from}</spam> reservadamente para <spam class = 'name'>${nameUser}</spam>: ${objMessage.text}</li>`;
+            
         }
     
     }
 
+    if (isThereNewMessage) {
+        chatList.lastElementChild.scrollIntoView();
+    }
       
 }
+
+
 
 function filterMessages(message) {
 
