@@ -18,15 +18,14 @@
             <ion-icon name="people"></ion-icon>
         </div>
         <ul class = "chat">
-            <li class = 'joinedLeaveRoom'><span class = 'time'>(09:21:45)</span> <spam class = 'name'>João</spam> entrou na sala...</li>
-            <li class = 'joinedLeaveRoom'><span class = 'time'>(09:21:45)</span> <spam class = 'name'>João</spam> entrou na sala...</li>
+            
             
         </ul>
         
         
         <div class="bottom-tab">
-            <input placeholder="Escreva aqui..." type="text" class="text" />
-            <ion-icon onclick="addMessage()" name="paper-plane-outline"></ion-icon>
+            <input placeholder="Escreva aqui..." type="text" class="text" data-test="input-message"/>
+            <ion-icon onclick="addMessage()" name="paper-plane-outline" data-test="send-message"></ion-icon>
         </div>
     </div>
 

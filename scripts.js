@@ -77,13 +77,13 @@ function renderizarConversas(message){
         const objMessage = filteredMessage[i];
 
         if(filteredMessage[i].type === 'status') {
-            chatList.innerHTML += `<li class = 'joinedLeaveRoom'><span class = 'time'>(${objMessage.time})</span> <spam class = 'name'>${objMessage.from}</spam> ${objMessage.text}</li>`;
+            chatList.innerHTML += `<li class = 'joinedLeaveRoom' data-test="message"><span class = 'time'>(${objMessage.time})</span> <spam class = 'name'>${objMessage.from}</spam> ${objMessage.text}</li>`;
             
         } else if (filteredMessage[i].type === 'message') {
-            chatList.innerHTML += `<li><span class = 'time'>(${objMessage.time})</span> <spam class = 'name'>${objMessage.from}</spam> para <spam class = 'name'>Todos</spam>: ${objMessage.text}</li>`;
+            chatList.innerHTML += `<li><span class = 'time' data-test="message">(${objMessage.time})</span> <spam class = 'name'>${objMessage.from}</spam> para <spam class = 'name'>Todos</spam>: ${objMessage.text}</li>`;
             
         } else {
-            chatList.innerHTML += `<li class = 'privateMessage'><span class = 'time'>(${objMessage.time})</span> <spam class = 'name'>${objMessage.from}</spam> reservadamente para <spam class = 'name'>${nameUser}</spam>: ${objMessage.text}</li>`;
+            chatList.innerHTML += `<li class = 'privateMessage' data-test="message"><span class = 'time'>(${objMessage.time})</span> <spam class = 'name'>${objMessage.from}</spam> reservadamente para <spam class = 'name'>${nameUser}</spam>: ${objMessage.text}</li>`;
             
         }
     
